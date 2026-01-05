@@ -1,101 +1,787 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xingyi Guo, PhD | Personal Website</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Guo Lab at VUMC</title>
+<meta content="Guo Lab at Vanderbilt University Medical Center — bioinformatics, statistical genetics, multi-omics, EHR, and AI for cancer research." name="description"/>
+<style>
+    :root{
+      /* Bright theme */
+      --bg: #f7fafc;
+      --bg2:#eef2ff;
+      --card:#ffffff;
+      --text:#0f172a;       /* slate-900 */
+      --muted:#475569;      /* slate-600 */
+      --line: rgba(15,23,42,0.12);
+      --accent:#2563eb;     /* blue-600 */
+      --accent2:#7c3aed;    /* violet-600 */
+      --shadow: 0 14px 40px rgba(2,6,23,0.08);
+      --radius: 18px;
+      --maxw: 1100px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1100px 700px at 15% 0%, rgba(37,99,235,0.14), transparent 55%),
+        radial-gradient(900px 650px at 85% 10%, rgba(124,58,237,0.14), transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, rgba(16,185,129,0.10), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      min-height: 100vh;
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    /* Top nav */
+    .nav{
+      position: sticky;
+      top:0;
+      z-index:50;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      max-width: var(--maxw);
+      margin:0 auto;
+      padding: 12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 240px;
+    }
+    .logo{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(124,58,237,0.95));
+      box-shadow: var(--shadow);
+    }
+    .brand strong{ font-weight: 800; letter-spacing: -0.2px; }
+    .brand span{ color: var(--muted); font-size: 0.92rem; line-height: 1.2; display:block; }
+
+    .menu{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:flex-end;
+    }
+    .menu a{
+      padding: 8px 10px;
+      border-radius: 12px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .menu a:hover{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(15,23,42,0.04);
+      text-decoration:none;
+    }
+
+    /* Layout */
+    .wrap{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 22px 18px 70px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 28px 0 8px;
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+    }
+
+    .hero-main{
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main:before{
+      content:"";
+      position:absolute;
+      inset:-130px -170px auto auto;
+      width: 420px;
+      height: 420px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(37,99,235,0.20), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(124,58,237,0.18), transparent 55%);
+      transform: rotate(16deg);
+      opacity: 0.95;
+      pointer-events:none;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      letter-spacing: -0.8px;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size: 1.05rem;
       line-height: 1.6;
     }
-    .container {
-      max-width: 800px;
-      margin: auto;
+
+    .pillrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 16px;
     }
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(15,23,42,0.02);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 650;
+      white-space: nowrap;
     }
-    .header h1 {
-      margin: 0;
-      font-size: 2.4em;
+    .dot{
+      width: 9px; height: 9px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
     }
-    .section {
-      margin-bottom: 30px;
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 18px;
     }
-    .section h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 8px;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(15,23,42,0.02);
+      color: var(--text);
+      font-weight: 750;
+      cursor: pointer;
     }
-    .contact {
-      font-size: 1.1em;
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(37,99,235,0.16), rgba(124,58,237,0.14));
+      border-color: rgba(15,23,42,0.14);
     }
-    .links a {
-      color: #0066cc;
-      text-decoration: none;
+    .btn:hover{ filter: brightness(1.02); text-decoration:none; }
+
+    .hero-side{
+      padding: 20px;
     }
-    .links a:hover {
-      text-decoration: underline;
+    .pi-card{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(15,23,42,0.02);
     }
-  </style>
+    .pi-photo{
+      width: 78px;
+      height: 78px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 1px solid rgba(15,23,42,0.10);
+    }
+    .pi-card b{ display:block; font-size: 1.02rem; }
+    .pi-card small{ color: var(--muted); }
+
+    .kv{
+      display:grid;
+      gap: 10px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+    .kv div{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(15,23,42,0.02);
+    }
+    .kv b{ color: var(--text); }
+
+    /* Sections */
+    .section{
+      margin-top: 18px;
+      padding: 22px;
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size: 1.4rem;
+      letter-spacing: -0.3px;
+    }
+    .section p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: repeat(12, 1fr);
+      margin-top: 14px;
+    }
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 920px){
+      .col-6, .col-4{ grid-column: span 12; }
+    }
+
+    .mini{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(15,23,42,0.02);
+    }
+    .mini h4{
+      margin:0 0 8px;
+      font-size: 1.05rem;
+      letter-spacing: -0.2px;
+    }
+    .mini p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.98rem;
+    }
+
+    .list{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .badge{
+      display:inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-family: var(--mono);
+      background: rgba(15,23,42,0.02);
+    }
+
+    /* Highlight gallery */
+    .gallery{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: repeat(12, 1fr);
+      margin-top: 14px;
+    }
+    .gitem{
+      grid-column: span 4;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      overflow:hidden;
+      background: rgba(15,23,42,0.02);
+    }
+    .gitem img{
+      width:100%;
+      height: 220px;
+      object-fit: cover;
+      display:block;
+    }
+    .gcap{
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    @media (max-width: 920px){
+      .gitem{ grid-column: span 12; }
+      .gitem img{ height: 240px; }
+    }
+
+    /* Team */
+    .teamgrid{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 14px;
+    }
+    @media (max-width: 920px){
+      .teamgrid{ grid-template-columns: 1fr; }
+    }
+    .person{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(15,23,42,0.02);
+      display:grid;
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+      align-items:center;
+    }
+    .avatar-img{
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid rgba(15,23,42,0.10);
+      background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(124,58,237,0.10));
+    }
+    .avatar-fallback{
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 800;
+      color: rgba(15,23,42,0.72);
+      border: 1px solid rgba(15,23,42,0.10);
+      background: linear-gradient(135deg, rgba(37,99,235,0.10), rgba(124,58,237,0.10));
+    }
+    .person b{ display:block; }
+    .person small{ color: var(--muted); }
+
+    footer{
+      max-width: var(--maxw);
+      margin: 28px auto 0;
+      padding: 18px;
+      color: var(--muted);
+      text-align:center;
+      border-top: 1px solid var(--line);
+    }
+    .footlinks{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      justify-content:center;
+      margin-top: 8px;
+    }
+    .footlinks a{ color: var(--muted); }
+  
+.publist{margin-top:12px; color:rgba(0,0,0,0.72); line-height:1.6;}
+.publist li{margin:6px 0;}
+.pub-title{font-weight:700; color:var(--text); margin-bottom:2px;}
+.pub-authors{color:rgba(0,0,0,0.68); font-size:0.98rem; margin-bottom:2px;}
+.pub-meta{color:rgba(0,0,0,0.68); font-size:0.98rem;}
+</style>
 </head>
-
 <body>
-  <div class="container">
-
-    <!-- Header -->
-    <div class="header">
-      <h1>Xingyi Guo, PhD</h1>
-      <p>Associate Professor of Medicine & Biomedical Informatics</p>
-    </div>
-
-    <!-- About -->
-    <div class="section about">
-      <h2>About</h2>
-      <p>
-        Xingyi Guo, PhD, is an Associate Professor of Medicine in the Division of Epidemiology within the Department of Medicine at Vanderbilt University Medical Center. He is also affiliated with the Department of Biomedical Informatics. Dr. Guo’s research focuses on cancer etiology, precision medicine, and computational genomics, including developing bioinformatics, statistical, and machine learning methods to integrate multi-omics data for identifying susceptibility genes in human cancers. :contentReference[oaicite:0]{index=0}
+<!-- NAV -->
+<div class="nav">
+<div class="nav-inner">
+<div class="brand">
+<div aria-hidden="true" class="logo"></div>
+<div>
+<strong>Guo Lab at VUMC</strong>
+<span>Bioinformatics • Statistical genetics • Multi-omics • EHR • AI • Drug repurposing</span>
+</div>
+</div>
+<nav aria-label="Primary" class="menu">
+<a href="#welcome">Welcome</a>
+<a href="#research">Research</a>
+<a href="#highlights">Highlights</a>
+<a href="#tools">Tools</a>
+<a href="#team">Team</a>
+<a href="#publications">Publications</a>
+<a href="#join">Join</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</div>
+<div class="wrap">
+<!-- HERO / WELCOME -->
+<section class="hero" id="welcome">
+<div class="card hero-main">
+<h1>Welcome to <span style="background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Guo Lab</span></h1>
+<p class="subtitle">
+          The PI, Xingyi Guo, PhD, is a tenured Associate Professor of Medicine in the Division of Epidemiology within the Department of Medicine at Vanderbilt University Medical Center (VUMC).
+          Our research is inherently interdisciplinary, encompassing bioinformatics, biostatistics, AI, genetic and molecular epidemiology,
+          population science, multi-omics integration, computational epigenetics and biology, and the use of electronic health records (EHRs)
+          to support translational cancer research.
+        </p>
+<div aria-label="Highlights" class="pillrow">
+<div class="pill"><span class="dot"></span> Bioinformatics &amp; biostatistics</div>
+<div class="pill"><span class="dot"></span> Statistical genetics</div>
+<div class="pill"><span class="dot"></span> Multi-omics (single-cell &amp; spatial)</div>
+<div class="pill"><span class="dot"></span> EHR phenotyping</div>
+<div class="pill"><span class="dot"></span> Drug repurposing</div>
+</div>
+<div class="actions">
+<a class="btn primary" href="#research">Explore research</a>
+<a class="btn" href="#highlights">Research highlights</a>
+<a class="btn" href="#join">Join the lab</a>
+</div>
+</div>
+<aside class="card hero-side">
+<div class="pi-card">
+<img alt="Xingyi Guo profile photo" class="pi-photo" src="assets/pi.jpg"/>
+<div>
+<b>Xingyi Guo, PhD</b>
+<small>Principal Investigator</small>
+</div>
+</div>
+<div class="kv">
+<div><b>Affiliation</b><br/>Departments of Medicine &amp; Biomedical Informatics, VUMC</div>
+<div><b>Location</b><br/>2525 West End Ave, Nashville, TN</div>
+<div><b>Email</b><br/><a href="mailto:xingyi.guo@vumc.org">xingyi.guo@vumc.org</a></div>
+</div>
+<div class="actions" style="margin-top:14px;">
+<a class="btn" href="https://github.com/XingyiGuo" rel="noreferrer" target="_blank">GitHub</a>
+<a class="btn" href="https://scholar.google.com/citations?user=olTCd3QAAAAJ&amp;hl=en" rel="noreferrer" target="_blank">Google Scholar</a>
+<a class="btn" href="https://www.vumc.org/dbmi/person/xingyi-guo-phd" rel="noreferrer" target="_blank">DBMI</a>
+</div>
+</aside>
+</section>
+<!-- NEWS -->
+<section aria-label="News" class="card section">
+<h2>News &amp; Updates <span class="badge">editable</span></h2>
+<div class="grid">
+<div class="mini col-4">
+<h4>Paper accepted</h4>
+<p>Mixed-model and transcriptome-wide association analyses identify transcription factors and genes associated with colorectal cancer susceptibility. Nature Communications</p>
+</div>
+<div class="mini col-4">
+<h4>Tool released</h4>
+<p>GLMM to detect risk TFs • sTF-TWAS • transTF-TWAS.</p>
+</div>
+<div class="mini col-4">
+<h4>We’re recruiting</h4>
+<p>Openings for trainees and collaborators (see “Join”).</p>
+</div>
+</div>
+</section>
+<!-- RESEARCH -->
+<section class="card section" id="research">
+<h2>Research</h2>
+<p>
+        We aim to advance the understanding of cancer etiology, prevention, and precision medicine through the development and application
+        of bioinformatics, statistical, and machine-learning/deep-learning approaches. We integrate large-scale GWAS, multi-omics data, including
+        single-cell and spatial omics, as well as electronic health records (EHRs) to investigate the genetic and molecular basis of human cancers.
+        Our work focuses on identifying genetic susceptibility factors, therapeutic targets, and candidate drugs, with an emphasis on inflammatory bowel disease, colorectal adenoma, and colorectal cancer to enable precise prevention and intervention across disease progression. Dr. Guo serves as Principal Investigator or Contact PI on multiple NCI-funded studies (e.g., R37CA227130 [MERIT], R01CA269589, and R01CA297582), aimed at advancing the understanding of colorectal cancer and adenoma etiology and supporting the development of therapeutic strategies for disease prevention and intervention.
+             </p>
+<div class="grid">
+<div class="mini col-6">
+<h4>1) Genomics &amp; disease risk</h4>
+<p>Identify susceptibility genes, fine-map loci, and build interpretable risk models across diverse populations.</p>
+<ul class="list">
+<li>GWAS / PRS / rare variant analyses</li>
+<li>Functional annotation and prioritization</li>
+<li>Cross-ancestry evaluation</li>
+</ul>
+</div>
+<div class="mini col-6">
+<h4>2) Multi-omics integration</h4>
+<p>Integrate transcriptomics, epigenomics, proteomics, and clinical phenotypes to identify pathways and therapeutic hypotheses.</p>
+<ul class="list">
+<li>TWAS / PWAS / MeWAS</li>
+<li>Network and pathway modeling</li>
+<li>Colocalization / mediation analyses</li>
+</ul>
+</div>
+<div class="mini col-6">
+<h4>3) Colorectal adenoma cohort building</h4>
+<p>Develop EHR-linked phenotypes and conduct biobank-based genomic studies of colorectal adenoma and recurrence (PIs:Guo/Yin, R01CA297582).</p>
+<ul class="list">
+<li>Clinical cohort building and phenotyping</li>
+<li>Demographic and clinicopathologic risk factors</li>
+<li>Large-scale GWAS / WGS for adenoma</li>
+</ul>
+</div>
+<div class="mini col-6">
+<h4>4) EHR, drug repurposing &amp; functional validation</h4>
+<p>Integrate GWAS, proteomics, and EHRs to identify druggable proteins and therapeutic candidates for cancer prevention.</p>
+<ul class="list">
+<li>Drug–protein data integration</li>
+<li>Trial emulation and real-world evidence</li>
+<li>Experimental validation of candidates</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- HIGHLIGHTS (images from Website.docx) -->
+<section class="card section" id="highlights">
+<h2>Research Highlights</h2>
+<p>Selected figures illustrating recent projects and methods.</p>
+<div aria-label="Research highlight gallery" class="gallery"><div class="gitem"><img alt="Research highlight 9 (Figure 1)" src="assets/highlight9.png"/><div class="gcap">Li et al., AJHG 2025 </div></div>
+<div class="gitem"><img alt="Li et al., AJHG" src="assets/highlight1.png"/><div class="gcap">Guo et al., Gastroenterology 2021 </div></div>
+<div class="gitem"><img alt="Guo et al.,Gastroenterology" src="assets/highlight2.jpg"/><div class="gcap">Guo et al., Gastroenterology 2021 </div></div>
+<div class="gitem"><img alt="Guo et al.,Gastroenterology" src="assets/highlight3.jpg"/><div class="gcap">He et al., NC 2022 </div></div>
+<div class="gitem"><img alt="He et al., NC" src="assets/highlight4.jpg"/><div class="gcap">Wen et al., NC 2021 </div></div>
+<div class="gitem"><img alt="Wen et al., NC" src="assets/highlight5.png"/><div class="gcap">Wen et al., NC 2021 </div></div>
+<div class="gitem"><img alt="Guo et al, CEBP (Cover image)" src="assets/highlight6.gif"/><div class="gcap">Guo et al, CEBP (Cover image)</div></div>
+<div class="gitem"><img alt="Guo et al, CEBP (Cover image)" src="assets/highlight7.gif"/><div class="gcap">Guo et al, CEBP (Cover image)</div></div>
+<div class="gitem"><img alt="Holowatyj et al, CD (Cover image)" src="assets/highlight8.png"/><div class="gcap">Holowatyj et al, CD (Cover image) 2023</div></div>
+</div>
+</section>
+<!-- TOOLS -->
+<section class="card section" id="tools">
+<h2>Tools &amp; Resources</h2>
+<p>We build and maintain software for statistical analysis to improve discovery of risk genes and transcription factors.</p>
+<div class="grid">
+<div class="mini col-4">
+<h4>TF-TWAS suite <span class="badge">R</span></h4>
+<p>GLMM for risk TF detection • sTF-TWAS • transTF-TWAS.</p>
+<p style="margin-top:10px;"><a href="https://github.com/XingyiGuo/TF-TWAS" rel="noreferrer" target="_blank">GitHub →</a></p>
+</div>
+<div class="mini col-4">
+<h4>PQTL_EHR framework <span class="badge">Workflow</span></h4>
+<p>Integrates cancer GWAS, proteomics, and EHRs to identify druggable proteins and therapeutic candidates.</p>
+<p style="margin-top:10px;"><a href="https://github.com/XingyiGuo/PQTL_EHR" rel="noreferrer" target="_blank">Repository →</a></p>
+</div>
+<div class="mini col-4">
+<h4>Colorectal adenoma GWAS <span class="badge">Dataset</span></h4>
+<p>Resources and summary results (add public portal link if available).</p>
+<p style="margin-top:10px;"><a href="https://github.com/XingyiGuo/" rel="noreferrer" target="_blank">Request access →</a></p>
+</div>
+</div>
+</section>
+<!-- TEAM -->
+<section class="card section" id="team">
+<h2>Team</h2>
+<p>Current members.</p>
+<div class="teamgrid" role="list">
+<div class="person" role="listitem">
+<img alt="Xingyi Guo profile photo" class="avatar-img" src="assets/pi.jpg"/>
+<div>
+<b>PI: Xingyi Guo, PhD</b>
+<small>Principal Investigator</small>
+</div>
+</div>
+<div class="person" role="listitem">
+<img alt="Jifeng Wang profile photo" class="avatar-img" src="assets/jifeng.jpg"/>
+<div>
+<b>Jifeng Wang</b>
+<small>Staff Scientist</small>
+</div>
+</div>
+<div class="person" role="listitem">
+<img alt="Qing Li profile photo" class="avatar-img" src="assets/qing.jpg"/>
+<div>
+<b>Qing Li</b>
+<small>Postdoc </small>
+</div>
+</div>
+<div class="person" role="listitem">
+<img alt="Chao Li profile photo" class="avatar-img" src="assets/chao.jpg"/>
+<div>
+<b>Chao Li</b>
+<small>Graduate Student</small>
+</div>
+</div>
+<div class="person" role="listitem">
+<img alt="Linshuoshuo Lyu profile photo" class="avatar-img" src="assets/linshuo.jpg"/>
+<div>
+<b>Linshuoshuo Lyu</b>
+<small>Graduate Student</small>
+</div>
+</div>
+<div class="person" role="listitem">
+<div aria-hidden="true" class="avatar-fallback">EJ</div>
+<div>
+<b>Eugene Jeong</b>
+<small>Postdoc</small>
+</div>
+</div>
+<div class="person" role="listitem">
+<div aria-hidden="true" class="avatar-fallback">JY</div>
+<div>
+<b>Joshua Ye</b>
+<small>Intern</small>
+</div>
+</div>
+<div class="person" role="listitem">
+<div aria-hidden="true" class="avatar-fallback">AL</div>
+<div>
+<b>Alumni</b>
+<small><a href="#" title="Add an alumni page or section">See all alumni</a></small>
+</div>
+</div>
+</div>
+</section>
+<!-- PUBLICATIONS -->
+<section class="card section" id="publications">
+  <h2>Publications</h2>
+  <p class="muted">Selected publications from the Guo Lab (* corresponding author).</p>
+  <ol class="publist">
+    <li>
+      <div class="pub-title">Large-scale integration of omics and electronic health records to identify potential risk protein biomarkers and therapeutic drugs for cancer prevention.</div>
+      <div class="pub-authors">Li Q, Song Q, Chen Z, Choi J, Moreno V, Ping J, Wen W, Li C, Shu X, Yan J, Shu XO, Cai Q, Long J, Huyghe JR, Pai R, Gruber SB, Yang Y, Casey G, Wang X, Toriola AT, Li L, Singh B, Lau KS, Zhou L, Zhang Z, Wu C, Peters U, Zheng W, Long Q*, Yin Z*, Guo X*.</div>
+      <div class="pub-meta">Am J Hum Genet. 2025 Dec 2. doi: 10.1016/j.ajhg.2025.11.008. PMID: 41338217.</div>
+    </li>
+<li>
+      <div class="pub-title">Demographic and Clinicopathologic Factors Associated with Colorectal Adenoma Recurrence.</div>
+      <div class="pub-authors">Awan UA, Song Q, Ciombor KK, Toriol AT, Choi J, Su T, Shu XO, Idrees K, Washington KM, Zheng W, Wen W*, Yin Z*, Guo X*.</div>
+      <div class="pub-meta">JAMA Network Open. 2026. (Preprint: 2025 May 3:2025.03.28.25324826.) doi: 10.1101/2025.03.28.25324826. PMID: 40343045.</div>
+    </li>
+<li>
+      <div class="pub-title">Mixed-model and transcriptome-wide association analyses identify transcription factors and genes associated with colorectal cancer susceptibility.</div>
+      <div class="pub-authors">Chen Z, Song W, Li Q, many others, Guo X*.</div>
+      <div class="pub-meta">Nature Communications. 2026.</div>
+    </li>
+<li>
+      <div class="pub-title">Enhancing disease risk gene discovery by integrating transcription factor-linked trans-variants into transcriptome-wide association analyses.</div>
+      <div class="pub-authors">He J, Perera D, Wen W, Ping J, Li Q, Lyu L, Chen Z, Shu X, Long J, Cai Q, Shu XO, Yin Z, Zheng W, Long Q*, Guo X*.</div>
+      <div class="pub-meta">Nucleic Acids Res. 2025 Jan 7;53(1):gkae1035. doi: 10.1093/nar/gkae1035. PMID: 39535029.</div>
+    </li>
+<li>
+      <div class="pub-title">Large-Scale Alternative Polyadenylation-Wide Association Studies to Identify Putative Cancer Susceptibility Genes.</div>
+      <div class="pub-authors">Guo X*, Ping J, Yang Y, Su X, Shu XO, Wen W, Chen Z, Zhang Y, Tao R, Jia G, He J, Cai Q, Zhang Q, Giles GG, Pearlman R, Rennert G, Vodicka P, Phipps A, Gruber SB, Casey G, Peters U, Long J, Lin W*, Zheng W*.</div>
+      <div class="pub-meta">Cancer Res. 2024 Aug 15;84(16):2707-2719. doi: 10.1158/0008-5472.CAN-24-0521. PMID: 38759092.</div>
+    </li>
+<li>
+      <div class="pub-title">Novel insights into genetic susceptibility for colorectal cancer from transcriptome-wide association and functional investigation.</div>
+      <div class="pub-authors">Chen Z, Song W, many others, Guo X*.</div>
+      <div class="pub-meta">J Natl Cancer Inst. 2024 Jan 10;116(1):127-137. doi: 10.1093/jnci/djad178. PMID: 37632791.</div>
+    </li>
+<li>
+      <div class="pub-title">Racial/Ethnic and Sex Differences in Somatic Cancer Gene Mutations among Patients with Early-Onset Colorectal Cancer.</div>
+      <div class="pub-authors">Holowatyj AN*, Wen W, Gibbs T, Seagle HM, Keller SR, Edwards DRV, Washington MK, Eng C, Perea J, Zheng W, Guo X*.</div>
+      <div class="pub-meta">Cancer Discov. 2023 Mar 1;13(3):570-579. doi: 10.1158/2159-8290.CD-22-0764. PMID: 3652063.</div>
+    </li>
+<li>
+      <div class="pub-title">Integrating transcription factor occupancy with transcriptome-wide association analysis identifies susceptibility genes in human cancers.</div>
+      <div class="pub-authors">He J, Wen W, Beeghly A, Chen Z, Cao C, Shu XO, Zheng W, Long Q*, Guo X*.</div>
+      <div class="pub-meta">Nat Commun. 2022 Nov 19;13(1):7118. doi: 10.1038/s41467-022-34888-0. PMID: 36402776.</div>
+    </li>
+<li>
+      <div class="pub-title">Distinct Genomic Landscapes in Early-Onset and Late-Onset Endometrial Cancer.</div>
+      <div class="pub-authors">Choi J, Holowatyj AN, Du M, Chen Z, Wen W, Schultz N, Lipworth L, Guo X*.</div>
+      <div class="pub-meta">JCO Precis Oncol. 2022 Feb;6:e2100401. doi: 10.1200/PO.21.00401. PMID: 35108035.</div>
+    </li>
+<li>
+      <div class="pub-title">Genetic variations of DNA bindings of FOXA1 and co-factors in breast cancer susceptibility.</div>
+      <div class="pub-authors">Wen W*, Chen Z, Bao J, Long Q, Shu XO, Zheng W, Guo X*.</div>
+      <div class="pub-meta">Nat Commun. 2021 Sep 13;12(1):5318. doi: 10.1038/s41467-021-25670-9. PMID: 34518541.</div>
+    </li>
+<li>
+      <div class="pub-title">Identifying Novel Susceptibility Genes for Colorectal Cancer Risk From a Transcriptome-Wide Association Study of 125,478 Subjects.</div>
+      <div class="pub-authors">Guo X*, many others.</div>
+      <div class="pub-meta">Gastroenterology. 2021 Mar;160(4):1164-1178.e6. doi: 10.1053/j.gastro.2020.08.062. PMID: 33058866.</div>
+    </li>
+<li>
+      <div class="pub-title">Spectrum of Somatic Cancer Gene Variations Among Adults With Appendiceal Cancer by Age at Disease Onset.</div>
+      <div class="pub-authors">Holowatyj AN*, Eng C, Wen W, Idrees K, Guo X*.</div>
+      <div class="pub-meta">JAMA Netw Open. 2020 Dec 1;3(12):e2028644. doi: 10.1001/jamanetworkopen.2020.28644. PMID: 33295976.</div>
+    </li>
+<li>
+      <div class="pub-title">Identifying Putative Susceptibility Genes and Evaluating Their Associations with Somatic Mutations in Human Cancers.</div>
+      <div class="pub-authors">Chen Z, Wen W, Beeghly-Fadiel A, Shu XO, Díez-Obrero V, Long J, Bao J, Wang J, Liu Q, Cai Q, Moreno V, Zheng W, Guo X*.</div>
+      <div class="pub-meta">Am J Hum Genet. 2019 Sep 5;105(3):477-492. doi: 10.1016/j.ajhg.2019.07.006. PMID: 31402092.</div>
+    </li>
+<li>
+      <div class="pub-title">Discovery of rare coding variants in OGDHL and BRCA2 in relation to breast cancer risk in Chinese women.</div>
+      <div class="pub-authors">Guo X*, Long J, Chen Z, Shu XO, Xiang YB, Wen W, Zeng C, Gao YT, Cai Q, Zheng W.</div>
+      <div class="pub-meta">Int J Cancer. 2020 Apr 15;146(8):2175-2181. doi: 10.1002/ijc.32825. PMID: 31837001.</div>
+    </li>
+<li>
+      <div class="pub-title">Use of deep whole-genome sequencing data to identify structure risk variants in breast cancer susceptibility genes.</div>
+      <div class="pub-authors">Guo X*, Shi J, Cai Q, Shu XO, He J, Wen W, Allen J, Pharoah P, Dunning A, Hunter DJ, Kraft P, Easton DF, Zheng W, Long J.</div>
+      <div class="pub-meta">Hum Mol Genet. 2018 Mar 1;27(5):853-859. doi: 10.1093/hmg/ddy005. PMID: 29325031.</div>
+    </li>
+<li>
+      <div class="pub-title">A Comprehensive cis-eQTL Analysis Revealed Target Genes in Breast Cancer Susceptibility Loci Identified in Genome-wide Association Studies.</div>
+      <div class="pub-authors">Guo X*, Lin W, Bao J, Cai Q, Pan X, Bai M, Yuan Y, Shi J, Sun Y, Han MR, Wang J, Liu Q, Wen W, Li B, Long J, Chen J, Zheng W.</div>
+      <div class="pub-meta">Am J Hum Genet. 2018 May 3;102(5):890-903. doi: 10.1016/j.ajhg.2018.03.016. PMID: 29727689.</div>
+    </li>
+  </ol>
+</section>
+<!-- JOIN -->
+<section class="card section" id="join">
+<h2>Join the Lab</h2>
+<p>
+        We welcome motivated trainees and collaborators. If you’re interested, please email a CV and a short description of your interests,
+        preferred start date, and relevant experience.
       </p>
-    </div>
-
-    <!-- Education -->
-    <div class="section education">
-      <h2>Education</h2>
-      <ul>
-        <li>PhD in Bioinformatics/Genomics, Zhejiang University, China</li>
-        <li>Postdoctoral Fellowship in Bioinformatics and Functional Genomics, Albert Einstein College of Medicine, NY</li>
-      </ul>
-    </div>
-
-    <!-- Research -->
-    <div class="section research">
-      <h2>Research Interests</h2>
-      <ul>
-        <li>Cancer etiology and prevention</li>
-        <li>Precision medicine & multi-omics integration</li>
-        <li>Bioinformatics, statistical & machine learning methods</li>
-        <li>Large-scale genomic data analysis</li>
-      </ul>
-    </div>
-
-    <!-- Contact -->
-    <div class="section contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:xingyi.guo@vumc.org">xingyi.guo@vumc.org</a></p>
-      <p>Department of Medicine & Biomedical Informatics, Vanderbilt University Medical Center</p>
-    </div>
-
-    <!-- Links -->
-    <div class="section links">
-      <h2>Links</h2>
-      <ul>
-        <li><a href="http://www.guoxlab.org/" target="_blank">Guo Lab Website</a></li>
-        <li><a href="https://scholar.google.com/citations?user=olTCd3QAAAAJ" target="_blank">Google Scholar</a></li>
-        <li><a href="https://orcid.org/0000-0001-5269-1294" target="_blank">ORCID Profile</a></li>
-      </ul>
-    </div>
-
-  </div>
+<div class="grid">
+<div class="mini col-6">
+<h4>Open roles for PhD students/postdocs</h4>
+<ul class="list">
+<li>Bioinformatics, Statistics, Computer Science</li>
+<li>Genomics, Multi-omics, EHR methods</li>
+<li>Analytical Pipelines, Cancer Biology</li>
+</ul>
+</div>
+<div class="mini col-6">
+<h4>What to include</h4>
+<ul class="list">
+<li>CV + links (e.g., GitHub)</li>
+<li>1–2 paragraphs: your interests &amp; fit</li>
+<li>Example projects or papers</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- CONTACT -->
+<section class="card section" id="contact">
+<h2>Contact</h2>
+<div class="grid">
+<div class="mini col-6">
+<h4>Email</h4>
+<p><a href="mailto:xingyi.guo@vumc.org">xingyi.guo@vumc.org</a></p>
+<p style="margin-top:10px;color:var(--muted);">
+            (For prospective trainees: please include your CV and availability.)
+          </p>
+</div>
+<div class="mini col-6">
+<h4>Address</h4>
+<p style="color:var(--muted);">
+            Departments of Medicine &amp; Biomedical Informatics<br/>
+            Vanderbilt University Medical Center<br/>
+            2525 West End Ave<br/>
+            Nashville, TN 37203
+          </p>
+</div>
+</div>
+</section>
+<footer>
+      © <script>document.write(new Date().getFullYear());</script> Guo Lab • Built with GitHub Pages
+      <div class="footlinks">
+<a href="#welcome">Top</a>
+<a href="https://github.com/XingyiGuo" rel="noreferrer" target="_blank">GitHub</a>
+<a href="https://scholar.google.com/citations?user=olTCd3QAAAAJ&amp;hl=en" rel="noreferrer" target="_blank">Scholar</a>
+<a href="https://www.vumc.org/dbmi/person/xingyi-guo-phd" rel="noreferrer" target="_blank">DBMI</a>
+</div>
+</footer>
+</div>
 </body>
 </html>
