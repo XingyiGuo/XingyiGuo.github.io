@@ -403,6 +403,8 @@
 .pub-title{font-weight:700; color:var(--text); margin-bottom:2px;}
 .pub-authors{color:rgba(0,0,0,0.68); font-size:0.98rem; margin-bottom:2px;}
 .pub-meta{color:rgba(0,0,0,0.68); font-size:0.98rem;}
+
+    .person .expertise { display:block; margin-top:4px; color:var(--muted); font-size:0.84rem; line-height:1.4; }
 </style>
 </head>
 <body>
@@ -433,7 +435,7 @@
 <section class="hero" id="welcome">
 <div class="card hero-main">
 <h1>Welcome to <span style="background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Guo Lab</span></h1>
-<p class="subtitle">Welcome to the Guo Lab at Vanderbilt University Medical Center (VUMC)! Our Principal Investigator, <strong>Xingyi Guo, PhD</strong>, is a tenured Associate Professor of Medicine, an <strong>NCI R37 MERIT Awardee</strong>, and a recipient of the <strong>Rawlings Directorship at Vanderbilt-Ingram Cancer Center</strong> and the <strong>Francis and William Blot Research Award</strong>. Our interdisciplinary research integrates bioinformatics, statistical genetics, genetic and molecular epidemiology, multi-omics, artificial intelligence, computational biology, digital pathology, and electronic health records (EHRs). We investigate common, rare, and structural genetic variants; single-cell and spatial omics; and H&amp;E histopathology to advance understanding of colorectal cancer, colorectal adenoma, and inflammatory bowel disease and to develop precision prevention and intervention strategies.</p>
+<p class="subtitle">Welcome to the Guo Lab at Vanderbilt University Medical Center (VUMC)! Our Principal Investigator, Xingyi Guo, PhD, is a tenured Associate Professor of Medicine, an NCI R37 MERIT Awardee, and a recipient of the Rawlings Directorship at Vanderbilt-Ingram Cancer Center and the Francis and William Blot Research Award. Our interdisciplinary research integrates bioinformatics, statistical genetics, genetic and molecular epidemiology, multi-omics, artificial intelligence, computational biology, digital pathology, and electronic health records (EHRs). We investigate common, rare, and structural genetic variants; single-cell and spatial omics; and H&amp;E histopathology to advance understanding of colorectal cancer, colorectal adenoma, and inflammatory bowel disease and to develop precision prevention and intervention strategies.</p>
 <div aria-label="Highlights" class="pillrow">
 <div class="pill"><span class="dot"></span> Bioinformatics &amp; biostatistics</div>
 <div class="pill"><span class="dot"></span> Statistical genetics</div>
@@ -564,43 +566,65 @@
 <div class="person" role="listitem">
 <img alt="Jifeng Wang profile photo" class="avatar-img" src="assets/jifeng.jpg"/>
 <div>
-<b>Jifeng Wang</b>
-<small>Staff Scientist</small>
+<b>Jifeng Wang, PhD</b>
+<small>Staff Scientist</small><span class="expertise">Research: Cancer biology</span>
 </div>
 </div>
 <div class="person" role="listitem">
 <img alt="Qing Li profile photo" class="avatar-img" src="assets/qing.jpg"/>
 <div>
-<b>Qing Li</b>
-<small>Postdoc </small>
+<b>Qing Li, PhD</b>
+<small>Postdoctoral Fellow</small><span class="expertise">Research: Statistical genetics and multi-omics</span>
 </div>
 </div>
 <div class="person" role="listitem">
 <img alt="Chao Li profile photo" class="avatar-img" src="assets/chao.jpg"/>
 <div>
 <b>Chao Li</b>
-<small>Graduate Student</small>
+<small>Graduate Student</small><span class="expertise">Research: Genetic epidemiology and multi-omics</span>
 </div>
 </div>
 <div class="person" role="listitem">
 <img alt="Linshuoshuo Lyu profile photo" class="avatar-img" src="assets/linshuo.jpg"/>
 <div>
 <b>Linshuoshuo Lyu</b>
-<small>Graduate Student</small>
+<small>Graduate Student</small><span class="expertise">Research: Genetic epidemiology and real-world data</span>
 </div>
 </div>
 <div class="person" role="listitem">
 <div aria-hidden="true" class="avatar-fallback">EJ</div>
 <div>
-<b>Eugene Jeong</b>
-<small>Postdoc</small>
+<b>Eugene Jeong, PhD</b>
+<small>T32 Postdoctoral Fellow</small><span class="expertise">Research: Artificial intelligence and multi-omics</span>
 </div>
 </div>
 <div class="person" role="listitem">
 <div aria-hidden="true" class="avatar-fallback">JY</div>
 <div>
 <b>Joshua Ye</b>
-<small>Intern</small>
+<small>Intern</small><span class="expertise">Research: Artificial intelligence and multi-omics</span>
+</div>
+</div>
+
+<div class="person" role="listitem">
+<img alt="Yuan Zhou profile photo" class="avatar-img" src="assets/YuanZhou.jpg"/>
+<div>
+<b>Yuan Zhou, PhD</b>
+<small>Postdoctoral Fellow</small><span class="expertise">Research: Statistical genetics and artificial intelligence</span>
+</div>
+</div>
+<div class="person" role="listitem">
+<img alt="Fangcheng Yuan profile photo" class="avatar-img" src="assets/FangchengYuan.jpg"/>
+<div>
+<b>Fangcheng Yuan, PhD</b>
+<small>Postdoctoral Fellow</small><span class="expertise">Research: Molecular and genetic epidemiology and multi-omics</span>
+</div>
+</div>
+<div class="person" role="listitem">
+<img alt="Jungyoon Choi profile photo" class="avatar-img" src="assets/Jungyoon.jpeg"/>
+<div>
+<b>Jungyoon Choi, MD, PhD</b>
+<small>Visiting Scholar</small><span class="expertise">Research: Colorectal oncology and cancer epidemiology</span>
 </div>
 </div>
 <div class="person" role="listitem">
@@ -609,29 +633,7 @@
 <b>Alumni</b>
 <small><a href="#" title="Add an alumni page or section">See all alumni</a></small>
 </div>
-</div>
-<div class="person" role="listitem">
-<img alt="Yuan Zhou profile photo" class="avatar-img" src="assets/YuanZhou.jpg"/>
-<div>
-<b>Yuan Zhou, PhD</b>
-<small>Postdoctoral Fellow · Statistical genetics and AI</small>
-</div>
-</div>
-<div class="person" role="listitem">
-<img alt="Fangcheng Yuan profile photo" class="avatar-img" src="assets/FangchengYuan.jpg"/>
-<div>
-<b>Fangcheng Yuan, PhD</b>
-<small>Postdoctoral Fellow · Molecular and genetic epidemiology; multi-omics</small>
-</div>
-</div>
-<div class="person" role="listitem">
-<img alt="Jungyoon Choi profile photo" class="avatar-img" src="assets/Jungyoon.jpeg"/>
-<div>
-<b>Jungyoon Choi, MD, PhD</b>
-<small>Visiting Scholar · Colorectal cancer oncology and epidemiology</small>
-</div>
-</div>
-</div>
+</div></div>
 </section>
 <!-- PUBLICATIONS -->
 <section class="card section" id="publications">
@@ -641,7 +643,8 @@
 <li>
 <div class="pub-title">Large-scale integration of omics and electronic health records to identify potential risk protein biomarkers and therapeutic drugs for cancer prevention.</div>
 <div class="pub-authors">Li Q, Song Q, Chen Z, Choi J, Moreno V, Ping J, Wen W, Li C, Shu X, Yan J, Shu XO, Cai Q, Long J, Huyghe JR, Pai R, Gruber SB, Yang Y, Casey G, Wang X, Toriola AT, Li L, Singh B, Lau KS, Zhou L, Zhang Z, Wu C, Peters U, Zheng W, Long Q*, Yin Z*, Guo X*.</div>
-<div class="pub-meta">Am J Hum Genet. 2025 Dec 2. doi: 10.1016/j.ajhg.2025.11.008. PMID: 41338217.</div>
+<div class="pub-meta">Am J Hum Genet. 2026 Jan 8;113(1):41-56. doi: 10.1016/j.ajhg.2025.11.008. Epub 2025 Dec 2.
+PMID: 41338217.</div>
 </li>
 <li>
 <div class="pub-title">Demographic and Clinicopathologic Factors Associated with Colorectal Adenoma Recurrence.</div>
@@ -651,7 +654,7 @@
 <li>
 <div class="pub-title">Mixed-model and transcriptome-wide association analyses identify transcription factors and genes associated with colorectal cancer susceptibility.</div>
 <div class="pub-authors">Chen Z, Song W, Li Q, many others, Guo X*.</div>
-<div class="pub-meta">Nature Communications. 2026.</div>
+<div class="pub-meta">Nature Communications. 2026. PMID: 41540004  PMCID: PMC12877115  DOI: 10.1038/s41467-025-68127-z</div>
 </li>
 <li>
 <div class="pub-title">Enhancing disease risk gene discovery by integrating transcription factor-linked trans-variants into transcriptome-wide association analyses.</div>
